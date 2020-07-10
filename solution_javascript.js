@@ -76,6 +76,15 @@ class EventSourcer {
     this.value = this.value - recentChange
     this.index = this.index + num   
   }
+
+  // Extra functionality 
+  // Function to clear the history 
+  reset() {
+    this.value = 0;
+    this.history = [[true, 0]]
+    this.index = 0
+  }
+
 }
 // ----- Do not modify anything below this line (needed for test suite) ------
 module.exports = EventSourcer;
