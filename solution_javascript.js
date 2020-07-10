@@ -1,7 +1,7 @@
 class EventSourcer {
   constructor() {
     this.value = 0;
-    this.history = [true, 0]
+    this.history = [[true, 0]]
     this.index = 0
   }
   add(num) {
@@ -56,13 +56,39 @@ class EventSourcer {
   }
 
   bulk_undo(num) {
-    var numGoBack = (this.history.length -1) - this.index
-    if (true) {
+
+    var recentChange = 0
+    for (var x = this.index; x > this.index - num; x--) {
+
+      if (this.history[x][0] === false) {
+        recentChange = recentChange + this.history[x][1]
+      }
+      else {
+        recentChange = recentChange - this.history[x][1]
+      }
+    } 
+    
+    this.value = this.value + recentChange
+    this.index = this.index - num
+  }
+  bulk_redo(num) {
+    var recentChange = 0
+    for (var x = this.index + 1; x <= this.index + num; x++) {
+      if (this.history[x]) {
+        if (this.history[x][0] === false) {
+          recentChange = recentChange + this.history[x][1]
+        }
+        else {
+          recentChange = recentChange - this.history[x][1]
+        }
+      }
+
       
-    }
+    } 
+    this.value = this.value - recentChange
+    this.index = this.index + num
 
   }
-  bulk_redo(num) {}
 }
 
 // ----- Do not modify anything below this line (needed for test suite) ------

@@ -66,6 +66,7 @@ test('test bulk undo', () => {
   sourcer.add(5);
   sourcer.bulk_undo(3);
 
+
   expect(sourcer.value).toEqual(3);
 });
 
@@ -73,15 +74,25 @@ test('test bulk redo', () => {
   let sourcer = new EventSourcer();
 
   sourcer.add(1);
+
   sourcer.add(1);
+ 
   sourcer.add(1);
+  
   sourcer.add(1);
+
   sourcer.add(1);
+
   sourcer.undo();
+
   sourcer.undo();
+
   sourcer.undo();
+
   sourcer.undo();
+
   sourcer.bulk_redo(4)
+ 
 
   expect(sourcer.value).toEqual(5);
 });
@@ -126,6 +137,7 @@ test('test bulk redo overstep', () => {
   sourcer.undo();
   sourcer.undo();
   sourcer.undo();
+  
   sourcer.bulk_redo(5);
 
   expect(sourcer.value).toEqual(25);
