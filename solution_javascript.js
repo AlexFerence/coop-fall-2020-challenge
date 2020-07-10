@@ -13,8 +13,6 @@ class EventSourcer {
     }
     this.value = this.value+num
     this.index = this.index + 1
-    
-    //check if there is something ahead in the chain and delete if possible
   }
   subtract(num) {
     if (this.history.length - 1 > this.index) {
@@ -47,19 +45,12 @@ class EventSourcer {
       else {
         this.value = this.value - recentChange
       }
-      //you will be allowed to redo
       this.index = this.index + 1
     }
-    else {
-      //not possible to redo
-    }
   }
-
   bulk_undo(num) {
-
     var recentChange = 0
     for (var x = this.index; x > this.index - num; x--) {
-
       if (this.history[x][0] === false) {
         recentChange = recentChange + this.history[x][1]
       }
@@ -67,7 +58,6 @@ class EventSourcer {
         recentChange = recentChange - this.history[x][1]
       }
     } 
-    
     this.value = this.value + recentChange
     this.index = this.index - num
   }
@@ -82,14 +72,10 @@ class EventSourcer {
           recentChange = recentChange - this.history[x][1]
         }
       }
-
-      
     } 
     this.value = this.value - recentChange
-    this.index = this.index + num
-    
+    this.index = this.index + num   
   }
 }
-
 // ----- Do not modify anything below this line (needed for test suite) ------
 module.exports = EventSourcer;
