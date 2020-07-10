@@ -1,10 +1,13 @@
 class EventSourcer {
   constructor() {
     this.value = 0;
+    //true means add ---- false means subtract, second item is how much is added or subtracted
     this.history = [[true, 0]]
+    //index keeps track of where we are in history
     this.index = 0
   }
   add(num) {
+    //check if we need to override or not
     if (this.history.length - 1 > this.index) {
       this.history[this.index] = [true, num]
     } 
@@ -15,6 +18,7 @@ class EventSourcer {
     this.index = this.index + 1
   }
   subtract(num) {
+    //check if we need to override or not
     if (this.history.length - 1 > this.index) {
       this.history[this.index] = [false, num]
     } 
