@@ -11,7 +11,7 @@ class EventSourcer {
     else {
       this.history.push([true, num])
     }
-    this.value = this.value + num
+    this.value = this.value+num
     this.index = this.index + 1
     
     //check if there is something ahead in the chain and delete if possible
@@ -87,7 +87,7 @@ class EventSourcer {
     } 
     this.value = this.value - recentChange
     this.index = this.index + num
-
+    
   }
 }
 
